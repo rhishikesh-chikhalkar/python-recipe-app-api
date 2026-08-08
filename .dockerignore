@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environments & Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+
+# UV & Package Managers
+.uv/
+.uv-cache/
+
+# Testing & Coverage
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Build & Cache
+build/
+dist/
+*.egg-info/
+
+# IDEs & System Files
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo
+
+# Docker / Deployment artifacts
+Dockerfile*
+docker-compose*.yml
+.dockerignore

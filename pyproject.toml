@@ -1,0 +1,19 @@
+[project]
+name = "python-recipe-app-api"
+version = "0.1.0"
+dependencies = [
+    "Django>=3.2.4,<3.3",
+    "djangorestframework>=3.12.4,<3.13",
+    "uvicorn>=0.22.0,<1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8>=3.9.2,<3.10",
+]
+
+[dependency-groups]
+dev = [
+    "flake8>=3.9.2,<3.10",
+]
+
