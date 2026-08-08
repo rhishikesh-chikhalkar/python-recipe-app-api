@@ -1,0 +1,14 @@
+{
+  "[yaml]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[github-actions]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "indentRainbow.ignoreErrorLanguages": [
+    "yaml",
+    "github-actions"
+  ]
+}
