@@ -151,6 +151,7 @@ relationships.
   ```python
   from django.conf import settings
 
+
   class Recipe(models.Model):
       user = models.ForeignKey(
           settings.AUTH_USER_MODEL,
@@ -325,10 +326,11 @@ class UserManager(BaseUserManager):
         user.save()
         return user
 
+
 class User(AbstractBaseUser):
     email = models.CharField(max_length=255)
     is_staff = models.BooleanField(default=True)
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
 ```
 
 **Answer / Flaws:**

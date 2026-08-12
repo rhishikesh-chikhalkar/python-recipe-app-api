@@ -71,7 +71,9 @@ try:
 except Psycopg2Error:
     pass
 
-assert patched_check() is Psycopg2Error  # If class object is in list without raise context
+assert (
+    patched_check() is Psycopg2Error
+)  # If class object is in list without raise context
 ```
 
 > **Important Distinction**: In `side_effect` lists, if an exception *class* (like `Psycopg2Error`) is passed, `unittest.mock` automatically instantiates and **raises** it. If a normal object or boolean is passed, it is returned.
@@ -96,6 +98,7 @@ def dynamic_response(database_alias):
     if database_alias == "default":
         return True
     raise ValueError(f"Unknown database {database_alias}")
+
 
 mock_check = Mock(side_effect=dynamic_response)
 assert mock_check("default") is True
@@ -129,6 +132,7 @@ Suppose `wait_for_db.py` contains:
 # app/core/management/commands/wait_for_db.py
 from django.core.management.base import BaseCommand
 
+
 class Command(BaseCommand):
     def handle(self, *args, **options):
         self.check(databases=["default"])
@@ -145,10 +149,10 @@ Decorators are evaluated from the **bottom up** (inner to outer), but mock param
 from unittest.mock import patch
 from django.test import SimpleTestCase
 
+
 # Class-level patch (Outer decorator -> 2nd parameter)
 @patch("core.management.commands.wait_for_db.Command.check")
 class CommandTests(SimpleTestCase):
-
     # Method-level patch (Inner decorator -> 1st parameter)
     @patch("time.sleep")
     def test_wait_for_db_delay(self, patched_sleep, patched_check):

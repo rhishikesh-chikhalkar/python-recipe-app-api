@@ -177,8 +177,7 @@ Example:
 ```python
 @patch("core.management.commands.wait_for_db.Command.check")
 @patch("time.sleep")
-def test_wait_for_db_delay(self, patched_sleep, patched_check):
-    ...
+def test_wait_for_db_delay(self, patched_sleep, patched_check): ...
 ```
 `@patch("time.sleep")` is closest to `def`, so `patched_sleep` is passed as the first parameter after `self`, and `patched_check` is passed second.
 

@@ -6,6 +6,7 @@ dependencies = [
     "djangorestframework>=3.12.4,<3.13",
     "psycopg2>=2.8.6,<2.9",
     "uvicorn>=0.22.0,<1.0",
+    "drf-spectacular>=0.15.1,<0.16",
 ]
 
 [project.optional-dependencies]
@@ -17,4 +18,7 @@ dev = [
 dev = [
     "flake8>=3.9.2,<3.10",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*" = ["RUF012"]
 

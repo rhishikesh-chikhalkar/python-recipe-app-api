@@ -51,9 +51,11 @@ Service modules (`gemini_transcriber.py` and `post_vision_analyzer.py`) instanti
 def _ensure_keys(self) -> None:
     if not self._keys and not self._custom_keys:
         from trigger_engine.core.constants import GEMINI_API_KEYS
+
         self._keys = [k for k in GEMINI_API_KEYS if k]
     if not self._keys:
         raise RuntimeError("No Gemini API keys configured.")
+
 
 def get_client(self) -> tuple[str, genai.Client]:
     self._ensure_keys()
@@ -101,8 +103,11 @@ def _safe_key_index(api_key: str) -> int:
     except ValueError:
         return -1
 
+
 # In logger call:
-logger.info("Gemini transcription attempt", extra={"key_index": _safe_key_index(api_key)})
+logger.info(
+    "Gemini transcription attempt", extra={"key_index": _safe_key_index(api_key)}
+)
 ```
 
 ---
