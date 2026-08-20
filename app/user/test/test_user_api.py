@@ -52,6 +52,19 @@ class PublicUserAPITests(TestCase):
         user_exists = get_user_model().objects.filter(email=payload["email"]).exists()
         self.assertFalse(user_exists)
 
+    def test_user_with_email_exists_error(self):
+        """Test error returned if user with email exists"""
+        payload = {
+            "email": "test@example.com",
+            "password": "password123",
+            "name": "Test Name",
+        }
+        create_user(**payload)
+
+        res = self.client.post(CREATE_USER_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_create_token_for_user(self):
         """Test generates token for valid credentials"""
         user_details = {
@@ -78,6 +91,13 @@ class PublicUserAPITests(TestCase):
         res = self.client.post(TOKEN_URL, payload)
 
         self.assertNotIn("token", res.data)
+        self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_token_no_user(self):
+        """Test token fails if user does not exist"""
+        payload = {"email": "nobody@example.com", "password": "password123"}
+        res = self.client.post(TOKEN_URL, payload)
+
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_token_blank_password(self):
